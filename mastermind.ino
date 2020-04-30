@@ -51,7 +51,12 @@ const int KEY_PEGS[][4] = {
 const int SECRET_CODE[] = {80, 81, 82, 83};
 #define INPUT_NEOPIXEL 84
 
+/* PLAYER INPUTS */
+#define POTENTIOMETER A0
+
 void setup() {
 	STRIP.begin();
 	STRIP.show();
+
+	pinMode(POTENTIOMETER, INPUT);
 }
