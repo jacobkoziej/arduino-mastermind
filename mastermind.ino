@@ -46,7 +46,8 @@ const int KEY_PEGS[][4] = {
 	{48, 58, 68, 78},
 	{49, 59, 69, 79},
 };
-
+const int SECRET_CODE[] = {80, 81, 82, 83};
+#define INPUT_NEOPIXEL 84
 
 void setup() {
 	STRIP.begin();
