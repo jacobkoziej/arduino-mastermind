@@ -54,6 +54,17 @@ const int SECRET_CODE[] = {80, 81, 82, 83};
 /* PLAYER INPUTS */
 #define POTENTIOMETER A0
 
+/* GAME COLORS */
+const int GAME_COLORS[][3] = {
+	{255, 255, 255}, // WHITE
+	{255, 000, 000}, // RED
+	{255, 165, 000}, // ORANGE
+	{255, 255, 000}, // YELLOW
+	{000, 255, 000}, // GREEN
+	{000, 000, 255}, // BLUE
+	{128, 000, 128}, // PURPLE
+};
+
 void setup() {
 	STRIP.begin();
 	STRIP.show();
