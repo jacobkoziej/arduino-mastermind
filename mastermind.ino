@@ -18,10 +18,12 @@
 
 #include <Adafruit_NeoPixel.h>
 
+/* NEOPIXEL CONFIGURATION */
 #define STRIP_PORT 3
-#define PIX_COUNT 80
+#define PIX_COUNT 85
 Adafruit_NeoPixel STRIP = Adafruit_NeoPixel(PIX_COUNT, STRIP_PORT, NEO_GRB + NEO_KHZ800);
 
+// Variables to address individual NeoPixels
 const int CODE_PEGS[][4] = {
 	{0, 10, 20, 30},
 	{1, 11, 21, 31},
@@ -46,7 +48,8 @@ const int KEY_PEGS[][4] = {
 	{48, 58, 68, 78},
 	{49, 59, 69, 79},
 };
-
+const int SECRET_CODE[] = {80, 81, 82, 83};
+#define INPUT_NEOPIXEL 84
 
 void setup() {
 	STRIP.begin();
