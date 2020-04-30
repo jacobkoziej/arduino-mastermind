@@ -60,3 +60,6 @@ void setup() {
 
 	pinMode(POTENTIOMETER, INPUT);
 }
+
+void loop() {
+}
