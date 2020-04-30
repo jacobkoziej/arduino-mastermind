@@ -19,7 +19,7 @@
 #include <Adafruit_NeoPixel.h>
 
 #define STRIP_PORT 3
-#define PIX_COUNT 80
+#define PIX_COUNT 85
 Adafruit_NeoPixel STRIP = Adafruit_NeoPixel(PIX_COUNT, STRIP_PORT, NEO_GRB + NEO_KHZ800);
 
 const int CODE_PEGS[][4] = {
