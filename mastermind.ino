@@ -65,6 +65,9 @@ const int GAME_COLORS[][3] = {
 	{128, 000, 128}, // PURPLE
 };
 
+/* GLOBAL VARIABLES */
+int potentiometer_selection;
+
 void setup() {
 	STRIP.begin();
 	STRIP.show();
@@ -73,4 +76,8 @@ void setup() {
 }
 
 void loop() {
+}
+
+void potentiometerSelect(int potentiometer, int items, int *output) {
+	*output = map(analogRead(potentiometer), 0, 1023, 0, (items - 1));
 }
