@@ -55,3 +55,6 @@ void setup() {
 	STRIP.begin();
 	STRIP.show();
 }
+
+void loop() {
+}
