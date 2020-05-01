@@ -6,5 +6,5 @@
 	* [X] Add secret code NeoPixel strip
 	* [X] Add a NeoPixel for setting color
 * [ ] Add player input
-	* [ ] Use a NeoPixel to display the current color selection
-	* [ ] Pick color with a potentiometer
+	* [X] Use a NeoPixel to display the current color selection
+	* [X] Pick color with a potentiometer

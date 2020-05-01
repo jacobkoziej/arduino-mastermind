@@ -51,7 +51,38 @@ const int KEY_PEGS[][4] = {
 const int SECRET_CODE[] = {80, 81, 82, 83};
 #define INPUT_NEOPIXEL 84
 
+/* PLAYER INPUTS */
+#define POTENTIOMETER A0
+
+/* GAME COLORS */
+const int GAME_COLORS[][3] = {
+	{000, 000, 000}, // NONE
+	{255, 255, 255}, // WHITE
+	{255, 000, 000}, // RED
+	{255, 165, 000}, // ORANGE
+	{255, 255, 000}, // YELLOW
+	{000, 255, 000}, // GREEN
+	{000, 000, 255}, // BLUE
+	{128, 000, 128}, // PURPLE
+};
+
+/* GLOBAL VARIABLES */
+int potentiometer_selection;
+
 void setup() {
 	STRIP.begin();
 	STRIP.show();
+
+	pinMode(POTENTIOMETER, INPUT);
+}
+
+void loop() {
+}
+
+void potentiometerSelect(int potentiometer, int items, int *output) {
+	*output = map(analogRead(potentiometer), 0, 1023, 0, (items - 1));
+}
+
+void setIndicatorLed(int input_pixel, const int color_array[][3], int color) {
+	STRIP.setPixelColor(input_pixel, color_array[color][0], color_array[color][1], color_array[color][2]);
 }
