@@ -10,4 +10,4 @@
 	* [X] Pick color with a potentiometer
 * [ ] Add game storage
 	* [X] Arrays for each storage type
-	* [ ] Define storage conventions
+	* [X] Define storage conventions

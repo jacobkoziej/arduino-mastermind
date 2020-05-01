@@ -66,6 +66,13 @@ const int GAME_COLORS[][3] = {
 	{128, 000, 128}, // PURPLE
 };
 
+/* GAME STORAGE */
+
+/*
+ * Each array stores the current color of each NeoPixel. Valid
+ * input values are in the range of 0 to 7.
+ */
+
 // Player input array
 int player_input[][4] = {
 	{0, 0, 0, 0},
