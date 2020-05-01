@@ -53,6 +53,7 @@ const int SECRET_CODE[] = {80, 81, 82, 83};
 
 /* PLAYER INPUTS */
 #define POTENTIOMETER A0
+const int PUSH_BUTTON[] = {A1, A2, A3, A4, A5};
 
 /* GAME COLORS */
 const int GAME_COLORS[][3] = {
@@ -112,6 +113,9 @@ void setup() {
 	STRIP.show();
 
 	pinMode(POTENTIOMETER, INPUT);
+	for (int i; i <= 4; i++) {
+		pinMode(PUSH_BUTTON[i], INPUT);
+	}
 }
 
 void loop() {
