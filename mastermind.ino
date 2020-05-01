@@ -82,3 +82,7 @@ void loop() {
 void potentiometerSelect(int potentiometer, int items, int *output) {
 	*output = map(analogRead(potentiometer), 0, 1023, 0, (items - 1));
 }
+
+void setIndicatorLed(int input_pixel, const int color_array[][3], int color) {
+	STRIP.setPixelColor(input_pixel, color_array[color][0], color_array[color][1], color_array[color][2]);
+}
