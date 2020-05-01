@@ -66,9 +66,6 @@ const int GAME_COLORS[][3] = {
 	{128, 000, 128}, // PURPLE
 };
 
-/* GLOBAL VARIABLES */
-int potentiometer_selection;
-
 // Player input array
 int player_input[][4] = {
 	{0, 0, 0, 0},
@@ -96,6 +93,9 @@ int npc_input[][4] = {
 	{0, 0, 0, 0},
 	{0, 0, 0, 0},
 };
+
+/* GLOBAL VARIABLES */
+int potentiometer_selection;
 
 // Secret code array
 int secret_code[4];
