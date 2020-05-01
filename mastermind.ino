@@ -69,6 +69,37 @@ const int GAME_COLORS[][3] = {
 /* GLOBAL VARIABLES */
 int potentiometer_selection;
 
+// Player input array
+int player_input[][4] = {
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+};
+
+// NPC input array
+int npc_input[][4] = {
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+	{0, 0, 0, 0},
+};
+
+// Secret code array
+int secret_code[4];
+
 void setup() {
 	STRIP.begin();
 	STRIP.show();

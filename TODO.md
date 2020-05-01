@@ -9,5 +9,5 @@
 	* [X] Use a NeoPixel to display the current color selection
 	* [X] Pick color with a potentiometer
 * [ ] Add game storage
-	* [ ] Arrays for each storage type
+	* [X] Arrays for each storage type
 	* [ ] Define storage conventions
