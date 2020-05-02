@@ -132,3 +132,8 @@ int potentiometerSelect(int potentiometer, int items) {
 void setIndicatorLed(int input_pixel, const int color_array[][3], int color) {
 	STRIP.setPixelColor(input_pixel, color_array[color][0], color_array[color][1], color_array[color][2]);
 }
+
+void updateIndicator(int color) {
+	STRIP.setPixelColor(INPUT_NEOPIXEL, GAME_COLORS[color][0], GAME_COLORS[color][1], GAME_COLORS[color][2]);
+	STRIP.show();
+}
