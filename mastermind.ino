@@ -104,6 +104,7 @@ int npc_input[][4] = {
 
 /* GLOBAL VARIABLES */
 int potentiometer_selection;
+int input_row = 0;
 
 // Secret code array
 int secret_code[4];
