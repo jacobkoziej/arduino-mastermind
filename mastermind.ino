@@ -134,6 +134,14 @@ void updateIndicator(int color) {
 	STRIP.show();
 }
 
+void updateSecretCode(int color0, int color1, int color2, int color3) {
+	int temp[] = {color0, color1, color2, color3};
+	for (int i = 0; i <= 3; i++) {
+		STRIP.setPixelColor((80 + i), GAME_COLORS[temp[i]][0], GAME_COLORS[temp[i]][1], GAME_COLORS[temp[i]][2]);
+	}
+	STRIP.show();
+}
+
 void updateAnyNeoPixel(int pixel, int color) {
 	STRIP.setPixelColor(pixel, GAME_COLORS[color][0], GAME_COLORS[color][1], GAME_COLORS[color][2]);
 	STRIP.show();
