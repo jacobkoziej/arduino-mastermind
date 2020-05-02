@@ -133,3 +133,8 @@ void updateIndicator(int color) {
 	STRIP.setPixelColor(INPUT_NEOPIXEL, GAME_COLORS[color][0], GAME_COLORS[color][1], GAME_COLORS[color][2]);
 	STRIP.show();
 }
+
+void updateAnyNeoPixel(int pixel, int color) {
+	STRIP.setPixelColor(pixel, GAME_COLORS[color][0], GAME_COLORS[color][1], GAME_COLORS[color][2]);
+	STRIP.show();
+}
