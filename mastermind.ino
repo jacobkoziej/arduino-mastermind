@@ -117,6 +117,9 @@ void setup() {
 	for (int i; i <= 4; i++) {
 		pinMode(PUSH_BUTTON[i], INPUT);
 	}
+
+	Serial.flush();
+	Serial.begin(9600);
 }
 
 void loop() {
