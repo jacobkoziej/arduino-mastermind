@@ -53,6 +53,7 @@ const int SECRET_CODE[] = {80, 81, 82, 83};
 
 /* PLAYER INPUTS */
 #define POTENTIOMETER A0
+const int PUSH_BUTTON[] = {A1, A2, A3, A4, A5};
 
 /* GAME COLORS */
 const int GAME_COLORS[][3] = {
@@ -103,6 +104,7 @@ int npc_input[][4] = {
 
 /* GLOBAL VARIABLES */
 int potentiometer_selection;
+int input_row = 0;
 
 // Secret code array
 int secret_code[4];
@@ -112,15 +114,35 @@ void setup() {
 	STRIP.show();
 
 	pinMode(POTENTIOMETER, INPUT);
+	for (int i; i <= 4; i++) {
+		pinMode(PUSH_BUTTON[i], INPUT);
+	}
+
+	Serial.flush();
+	Serial.begin(9600);
 }
 
 void loop() {
 }
 
-void potentiometerSelect(int potentiometer, int items, int *output) {
-	*output = map(analogRead(potentiometer), 0, 1023, 0, (items - 1));
+int potentiometerSelect(int potentiometer, int items) {
+	return map(analogRead(potentiometer), 0, 1023, 0, (items - 1));
 }
 
-void setIndicatorLed(int input_pixel, const int color_array[][3], int color) {
-	STRIP.setPixelColor(input_pixel, color_array[color][0], color_array[color][1], color_array[color][2]);
+void updateIndicator(int color) {
+	STRIP.setPixelColor(INPUT_NEOPIXEL, GAME_COLORS[color][0], GAME_COLORS[color][1], GAME_COLORS[color][2]);
+	STRIP.show();
+}
+
+void updateSecretCode(int color0, int color1, int color2, int color3) {
+	int temp[] = {color0, color1, color2, color3};
+	for (int i = 0; i <= 3; i++) {
+		STRIP.setPixelColor((80 + i), GAME_COLORS[temp[i]][0], GAME_COLORS[temp[i]][1], GAME_COLORS[temp[i]][2]);
+	}
+	STRIP.show();
+}
+
+void updateAnyNeoPixel(int pixel, int color) {
+	STRIP.setPixelColor(pixel, GAME_COLORS[color][0], GAME_COLORS[color][1], GAME_COLORS[color][2]);
+	STRIP.show();
 }

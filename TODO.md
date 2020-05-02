@@ -8,6 +8,9 @@
 * [ ] Add player input
 	* [X] Use a NeoPixel to display the current color selection
 	* [X] Pick color with a potentiometer
+	* [ ] Initialize push buttons
+	* [ ] Set the current selection with a push button
+	* [ ] Allow player to move up a row
 * [ ] Add game storage
 	* [X] Arrays for each storage type
 	* [X] Define storage conventions
