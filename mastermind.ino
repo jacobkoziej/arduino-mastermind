@@ -125,6 +125,7 @@ void setup() {
 void loop() {
 }
 
+// Return the reading of the potentiometer based on items
 int potentiometerSelect(int potentiometer, int items) {
 	return map(analogRead(potentiometer), 0, 1023, 0, (items - 1));
 }
@@ -147,6 +148,7 @@ void updateAnyNeoPixel(int pixel, int color) {
 	STRIP.show();
 }
 
+// Return the state of push buttons 0 to 4
 int buttonState(int button) {
 	return digitalRead(PUSH_BUTTON[button]);
 }
