@@ -56,7 +56,6 @@ const int SECRET_CODE[] = {80, 81, 82, 83};
 
 /* GAME COLORS */
 const int GAME_COLORS[][3] = {
-	{000, 000, 000}, // NONE
 	{255, 255, 255}, // WHITE
 	{255, 000, 000}, // RED
 	{255, 165, 000}, // ORANGE
@@ -64,6 +63,7 @@ const int GAME_COLORS[][3] = {
 	{000, 255, 000}, // GREEN
 	{000, 000, 255}, // BLUE
 	{128, 000, 128}, // PURPLE
+	{000, 000, 000}, // NONE
 };
 
 /* GAME STORAGE */
