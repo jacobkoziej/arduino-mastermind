@@ -146,3 +146,7 @@ void updateAnyNeoPixel(int pixel, int color) {
 	STRIP.setPixelColor(pixel, GAME_COLORS[color][0], GAME_COLORS[color][1], GAME_COLORS[color][2]);
 	STRIP.show();
 }
+
+int buttonState(int button) {
+	return digitalRead(PUSH_BUTTON[button]);
+}
