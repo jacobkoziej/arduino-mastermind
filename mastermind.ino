@@ -133,8 +133,8 @@ void loop() {
 }
 
 // Return the reading of the potentiometer based on items
-int potentiometerSelect(int potentiometer, int items) {
-	return map(analogRead(potentiometer), 0, 1023, 0, (items - 1));
+int potentiometerSelect(int items) {
+	return map(analogRead(POTENTIOMETER), 0, 1023, 0, (items - 1));
 }
 
 void updateIndicator(int color) {
