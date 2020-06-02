@@ -162,6 +162,7 @@ int buttonState(int button) {
 
 void bootstrap() {
 	// Print MASTERMIND in top right of LCD
+	LCD.clear();
 	LCD.rightToLeft();
 	LCD.setCursor(15, 0);
 	LCD.print("DNIMRETSAM");
