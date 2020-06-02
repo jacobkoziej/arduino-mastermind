@@ -159,3 +159,14 @@ void updateAnyNeoPixel(int pixel, int color) {
 int buttonState(int button) {
 	return digitalRead(PUSH_BUTTON[button]);
 }
+
+void bootstrap() {
+	// Print MASTERMIND in top right of LCD
+	LCD.rightToLeft();
+	LCD.setCursor(15, 0);
+	LCD.print("DNIMRETSAM");
+
+	LCD.leftToRight();
+	LCD.setCursor(0, 1);
+	LCD.print("Press any button");
+}
