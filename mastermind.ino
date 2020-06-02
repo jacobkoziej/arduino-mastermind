@@ -17,6 +17,7 @@
  */
 
 #include <Adafruit_NeoPixel.h>
+#include <LiquidCrystal.h>
 
 /* NEOPIXEL CONFIGURATION */
 #define STRIP_PORT 3
@@ -54,6 +55,10 @@ const int SECRET_CODE[] = {80, 81, 82, 83};
 /* PLAYER INPUTS */
 #define POTENTIOMETER A0
 const int PUSH_BUTTON[] = {A1, A2, A3, A4, A5};
+
+/* LCD CONFIGURATION */
+/************** rs, e, d4, d5, d6, d7 */
+LiquidCrystal LCD(13, 12, 8, 7, 4, 2);
 
 /* GAME COLORS */
 const int GAME_COLORS[][3] = {
@@ -112,6 +117,8 @@ int secret_code[4];
 void setup() {
 	STRIP.begin();
 	STRIP.show();
+
+	LCD.begin(16, 2);
 
 	pinMode(POTENTIOMETER, INPUT);
 	for (int i; i <= 4; i++) {
