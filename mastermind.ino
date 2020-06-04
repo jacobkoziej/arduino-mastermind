@@ -132,6 +132,7 @@ void setup() {
 }
 
 void loop() {
+	bootstrap();
 }
 
 // Returns range of 0 to (items - 1)
