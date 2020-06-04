@@ -132,10 +132,15 @@ void setup() {
 void loop() {
 }
 
-// Return the reading of the potentiometer based on items
+// Returns range of 0 to (items - 1)
 int potentiometerSelect(int items) {
 	int output = map(analogRead(POTENTIOMETER), 0, 1023, 0, items);
 
+	/*
+	 * For some reason the map function has a quirk where the maximum 
+	 * value is only mapped at the upper bound of the input (1023).
+	 * This is the work-around for this quirk.
+	 */
 	if (output != items) {
 		return output;
 	} else {
