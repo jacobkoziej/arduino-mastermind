@@ -108,6 +108,7 @@ int npc_input[][4] = {
 };
 
 /* GLOBAL VARIABLES */
+int game_difficulty;
 int player_count;
 int potentiometer_selection;
 int input_row = 0;
@@ -231,6 +232,45 @@ void bootstrap() {
 			} while (push_button_state == 1);
 
 			player_count = (current_selection + 1);
+			break;
+		}
+	}
+
+	// Set game difficulty
+	LCD.clear();
+	LCD.print("Game Difficulty:");
+	LCD.rightToLeft();
+
+	previous_selection = -1; // prime the forever loop
+
+	while (1) {
+		int push_button_state = digitalRead(PUSH_BUTTON[4]);
+		current_selection = potentiometerSelection(3);
+
+		if (current_selection != previous_selection) {
+			LCD.setCursor(15, 1);
+
+			switch (current_selection) {
+				case 0:
+					LCD.print("lamroN"); // Normal
+					break;
+				case 1:
+					LCD.print("ykcirT"); // Tricky
+					break;
+				case 2:
+					LCD.print("draH  "); // Hard
+					break;
+			}
+
+			previous_selection = current_selection;
+		}
+
+		if (push_button_state == 1) {
+			do {
+				push_button_state = digitalRead(PUSH_BUTTON[4]);
+			} while (push_button_state == 1);
+
+			game_difficulty = current_selection;
 			break;
 		}
 	}
