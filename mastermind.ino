@@ -108,6 +108,8 @@ int npc_input[][4] = {
 };
 
 /* GLOBAL VARIABLES */
+int game_difficulty;
+int player_count;
 int potentiometer_selection;
 int input_row = 0;
 
@@ -130,11 +132,23 @@ void setup() {
 }
 
 void loop() {
+	bootstrap();
 }
 
-// Return the reading of the potentiometer based on items
-int potentiometerSelect(int potentiometer, int items) {
-	return map(analogRead(potentiometer), 0, 1023, 0, (items - 1));
+// Returns range of 0 to (items - 1)
+int potentiometerSelection(int items) {
+	int output = map(analogRead(POTENTIOMETER), 0, 1023, 0, items);
+
+	/*
+	 * For some reason the map function has a quirk where the maximum 
+	 * value is only mapped at the upper bound of the input (1023).
+	 * This is the work-around for this quirk.
+	 */
+	if (output != items) {
+		return output;
+	} else {
+		return output - 1;
+	}
 }
 
 void updateIndicator(int color) {
@@ -158,4 +172,120 @@ void updateAnyNeoPixel(int pixel, int color) {
 // Return the state of push buttons 0 to 4
 int buttonState(int button) {
 	return digitalRead(PUSH_BUTTON[button]);
+}
+
+void bootstrap() {
+	Serial.println("-----BEGIN BOOTSTRAP-----");
+
+	// Print MASTERMIND in top right of LCD
+	LCD.clear();
+	LCD.rightToLeft();
+	LCD.setCursor(15, 0);
+	LCD.print("DNIMRETSAM");
+
+	LCD.leftToRight();
+	LCD.setCursor(0, 1);
+	LCD.print("Press any button");
+
+	// Wait for player to press a button before moving on
+	int game_start = 0;
+	while (game_start == 0) {
+		for (int i = 0; i <= 4; i++) {
+			int push_button_state = digitalRead(PUSH_BUTTON[i]);
+
+			if (push_button_state == 1) {
+				do {
+					push_button_state = digitalRead(PUSH_BUTTON[i]);
+				} while (push_button_state == 1);
+
+				game_start = 1;
+				break;
+			}
+		}
+	}
+
+	Serial.print("\nEvent: ");
+	Serial.println("player initiated game");
+
+	// Set how many players will be playing the game
+	LCD.clear();
+	LCD.print("Player count:");
+	LCD.setCursor(0, 1);
+	LCD.print("[==============]");
+	LCD.rightToLeft();
+
+	int current_selection, previous_selection = !potentiometerSelection(2);
+
+	while (1) {
+		int push_button_state = digitalRead(PUSH_BUTTON[4]);
+		current_selection = potentiometerSelection(2);
+
+		if (current_selection != previous_selection) {
+			LCD.setCursor(15, 0);
+
+			if (current_selection == 0) {
+				LCD.print("1");
+			} else {
+				LCD.print("2");
+			}
+
+			previous_selection = current_selection;
+		}
+
+		if (push_button_state == 1) {
+			do {
+				push_button_state = digitalRead(PUSH_BUTTON[4]);
+			} while (push_button_state == 1);
+
+			player_count = (current_selection + 1);
+			break;
+		}
+	}
+
+	Serial.print("Player Count: ");
+	Serial.println(player_count);
+
+	// Set game difficulty
+	LCD.clear();
+	LCD.print("Game Difficulty:");
+	LCD.rightToLeft();
+
+	previous_selection = -1; // prime the forever loop
+
+	while (1) {
+		int push_button_state = digitalRead(PUSH_BUTTON[4]);
+		current_selection = potentiometerSelection(3);
+
+		if (current_selection != previous_selection) {
+			LCD.setCursor(15, 1);
+
+			switch (current_selection) {
+				case 0:
+					LCD.print("lamroN"); // Normal
+					break;
+				case 1:
+					LCD.print("ykcirT"); // Tricky
+					break;
+				case 2:
+					LCD.print("draH  "); // Hard
+					break;
+			}
+
+			previous_selection = current_selection;
+		}
+
+		if (push_button_state == 1) {
+			do {
+				push_button_state = digitalRead(PUSH_BUTTON[4]);
+			} while (push_button_state == 1);
+
+			game_difficulty = current_selection;
+			break;
+		}
+	}
+
+	Serial.print("Game Difficulty: ");
+	Serial.println(game_difficulty);
+
+	Serial.println("\n-----END BOOTSTRAP-----\n");
 }
