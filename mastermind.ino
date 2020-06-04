@@ -133,7 +133,7 @@ void loop() {
 }
 
 // Returns range of 0 to (items - 1)
-int potentiometerSelect(int items) {
+int potentiometerSelection(int items) {
 	int output = map(analogRead(POTENTIOMETER), 0, 1023, 0, items);
 
 	/*
