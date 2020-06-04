@@ -172,11 +172,11 @@ void bootstrap() {
 	LCD.print("Press any button");
 
 	// Wait for player to press a button before moving on
-	int gameStart = 0;
-	while (gameStart == 0) {
+	int game_start = 0;
+	while (game_start == 0) {
 		for (int i = 0; i <= 4; i++) {
 			if (digitalRead(PUSH_BUTTON[i]) == 1) {
-				gameStart = 1;
+				game_start = 1;
 				break;
 			}
 		}
