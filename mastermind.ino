@@ -174,6 +174,8 @@ int buttonState(int button) {
 }
 
 void bootstrap() {
+	Serial.println("-----BEGIN BOOTSTRAP-----");
+
 	// Print MASTERMIND in top right of LCD
 	LCD.clear();
 	LCD.rightToLeft();
@@ -200,6 +202,9 @@ void bootstrap() {
 			}
 		}
 	}
+
+	Serial.print("\nEvent: ");
+	Serial.println("player initiated game");
 
 	// Set how many players will be playing the game
 	LCD.clear();
@@ -235,6 +240,9 @@ void bootstrap() {
 			break;
 		}
 	}
+
+	Serial.print("Player Count: ");
+	Serial.println(player_count);
 
 	// Set game difficulty
 	LCD.clear();
@@ -274,4 +282,9 @@ void bootstrap() {
 			break;
 		}
 	}
+
+	Serial.print("Game Difficulty: ");
+	Serial.println(game_difficulty);
+
+	Serial.println("\n-----END BOOTSTRAP-----\n");
 }
