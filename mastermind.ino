@@ -187,7 +187,13 @@ void bootstrap() {
 	int game_start = 0;
 	while (game_start == 0) {
 		for (int i = 0; i <= 4; i++) {
-			if (digitalRead(PUSH_BUTTON[i]) == 1) {
+			int push_button_state = digitalRead(PUSH_BUTTON[i]);
+
+			if (push_button_state == 1) {
+				do {
+					push_button_state = digitalRead(PUSH_BUTTON[i]);
+				} while (push_button_state == 1);
+
 				game_start = 1;
 				break;
 			}
@@ -204,6 +210,7 @@ void bootstrap() {
 	int current_selection, previous_selection = !potentiometerSelection(2);
 
 	while (1) {
+		int push_button_state = digitalRead(PUSH_BUTTON[4]);
 		current_selection = potentiometerSelection(2);
 
 		if (current_selection != previous_selection) {
@@ -218,7 +225,11 @@ void bootstrap() {
 			previous_selection = current_selection;
 		}
 
-		if (digitalRead(PUSH_BUTTON[4]) == 1) {
+		if (push_button_state == 1) {
+			do {
+				push_button_state = digitalRead(PUSH_BUTTON[4]);
+			} while (push_button_state == 1);
+
 			player_count = (current_selection + 1);
 			break;
 		}
