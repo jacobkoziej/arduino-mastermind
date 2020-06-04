@@ -108,6 +108,7 @@ int npc_input[][4] = {
 };
 
 /* GLOBAL VARIABLES */
+int player_count;
 int potentiometer_selection;
 int input_row = 0;
 
@@ -190,6 +191,36 @@ void bootstrap() {
 				game_start = 1;
 				break;
 			}
+		}
+	}
+
+	// Set how many players will be playing the game
+	LCD.clear();
+	LCD.print("Player count:");
+	LCD.setCursor(0, 1);
+	LCD.print("[==============]");
+	LCD.rightToLeft();
+
+	int current_selection, previous_selection = !potentiometerSelection(2);
+
+	while (1) {
+		current_selection = potentiometerSelection(2);
+
+		if (current_selection != previous_selection) {
+			LCD.setCursor(15, 0);
+
+			if (current_selection == 0) {
+				LCD.print("1");
+			} else {
+				LCD.print("2");
+			}
+
+			previous_selection = current_selection;
+		}
+
+		if (digitalRead(PUSH_BUTTON[4]) == 1) {
+			player_count = (current_selection + 1);
+			break;
 		}
 	}
 }
