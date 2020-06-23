@@ -110,7 +110,6 @@ int secret_code[] = {7, 7, 7, 7};
 /* GLOBAL VARIABLES */
 int game_difficulty;
 int player_count;
-int potentiometer_selection;
 int current_row = 0;
 
 void setup() {
