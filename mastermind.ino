@@ -109,7 +109,7 @@ int key_peg_output[][4] = {
 int game_difficulty;
 int player_count;
 int potentiometer_selection;
-int input_row = 0;
+int current_row = 0;
 
 // Secret code array
 int secret_code[4];
