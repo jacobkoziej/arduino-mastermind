@@ -285,3 +285,6 @@ void bootstrap() {
 
 	Serial.println("\n-----END BOOTSTRAP-----\n");
 }
+
+void generateCode() {
+}
