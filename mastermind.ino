@@ -1,6 +1,6 @@
 /*
  * An Arduino clone of the board game Mastermind
- * Copyright (C) 2020  Jacob Koziej, Matthew Bilik
+ * Copyright (C) 2020  Jacob Koziej
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
