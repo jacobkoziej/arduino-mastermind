@@ -324,5 +324,20 @@ void generateCode() {
 				}
 				break;
 		}
+		// Placebo progress bar
+		LCD.clear();
+		LCD.print("Code Generation:");
+		LCD.setCursor(0, 1);
+		LCD.print("[");
+		LCD.setCursor(15, 1);
+		LCD.print("]");
+		LCD.setCursor(1, 1);
+		int placebo_delay = 220;
+		for (int i = 1; i <= 14; i++) {
+			delay(placebo_delay);
+			LCD.print("=");
+			placebo_delay += 20;
+		}
+		delay(1500);
 	}
 }
