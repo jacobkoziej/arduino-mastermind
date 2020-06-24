@@ -363,34 +363,30 @@ void LCDcodeStatus(int color, int pos, int update) {
 
 	switch (color) {
 		case 0:
-			color_word = " WHITE";
-			color_letter = 'W';
-			break;
-		case 1:
 			color_word = "   RED";
 			color_letter = 'R';
 			break;
-		case 2:
+		case 1:
 			color_word = "ORANGE";
 			color_letter = 'O';
 			break;
-		case 3:
+		case 2:
 			color_word = "YELLOW";
 			color_letter = 'Y';
 			break;
-		case 4:
+		case 3:
 			color_word = " GREEN";
 			color_letter = 'G';
 			break;
-		case 5:
+		case 4:
 			color_word = "  BLUE";
 			color_letter = 'B';
 			break;
-		case 6:
+		case 5:
 			color_word = "PURPLE";
 			color_letter = 'P';
 			break;
-		case 7:
+		case 6:
 			color_word = "  NONE";
 			color_letter = 'N';
 			break;
