@@ -339,6 +339,12 @@ void generateCode() {
 			placebo_delay += 20;
 		}
 		delay(1500);
+	} else {
+		LCD.clear();
+		LCD.print("Code Generation:");
+		LCD.setCursor(3, 1);
+		LCD.print("By Code Maker");
+		delay(3000);
 	}
 }
 
