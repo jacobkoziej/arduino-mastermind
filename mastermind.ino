@@ -297,7 +297,7 @@ void generateCode() {
 					int temp_val;
 					// Generate random colors until it is not duplicate
 					while (char_exists == 1) {
-						temp_val = random(7);
+						temp_val = random(6);
 						char_exists = 0;
 						for (int b = 0; b <= 3; b++) {
 							if (temp_val == secret_code[b]) {
@@ -313,14 +313,14 @@ void generateCode() {
 			// Tricky - duplicate colors allowed
 			case 1:
 				for (int i = 0; i <= 3; i++) {
-					secret_code[i] = random(7);
+					secret_code[i] = random(6);
 				}
 				break;
 
 			// Hard - duplicate/no color allowed
 			case 2:
 				for (int i = 0; i <= 3; i++) {
-					secret_code[i] = random(8);
+					secret_code[i] = random(7);
 				}
 				break;
 		}
