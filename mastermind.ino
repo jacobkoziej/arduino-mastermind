@@ -62,7 +62,6 @@ LiquidCrystal LCD(13, 12, 8, 7, 4, 2);
 
 /* GAME COLORS */
 const int GAME_COLORS[][3] = {
-	{255, 255, 255}, // WHITE
 	{255, 000, 000}, // RED
 	{255, 165, 000}, // ORANGE
 	{255, 255, 000}, // YELLOW
@@ -70,6 +69,7 @@ const int GAME_COLORS[][3] = {
 	{000, 000, 255}, // BLUE
 	{128, 000, 128}, // PURPLE
 	{000, 000, 000}, // NONE
+	{255, 255, 255}, // WHITE
 };
 
 /* GAME STORAGE */
@@ -80,32 +80,32 @@ const int GAME_COLORS[][3] = {
  */
 
 int player_input[][4] = {
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
 };
 
 int key_peg_output[][4] = {
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
+	{6, 6, 6, 6},
 };
 
-int secret_code[] = {7, 7, 7, 7};
+int secret_code[] = {6, 6, 6, 6};
 
 /* GLOBAL VARIABLES */
 int game_difficulty;
@@ -297,7 +297,7 @@ void generateCode() {
 					int temp_val;
 					// Generate random colors until it is not duplicate
 					while (char_exists == 1) {
-						temp_val = random(7);
+						temp_val = random(6);
 						char_exists = 0;
 						for (int b = 0; b <= 3; b++) {
 							if (temp_val == secret_code[b]) {
@@ -313,14 +313,14 @@ void generateCode() {
 			// Tricky - duplicate colors allowed
 			case 1:
 				for (int i = 0; i <= 3; i++) {
-					secret_code[i] = random(7);
+					secret_code[i] = random(6);
 				}
 				break;
 
 			// Hard - duplicate/no color allowed
 			case 2:
 				for (int i = 0; i <= 3; i++) {
-					secret_code[i] = random(8);
+					secret_code[i] = random(7);
 				}
 				break;
 		}
@@ -363,34 +363,30 @@ void LCDcodeStatus(int color, int pos, int update) {
 
 	switch (color) {
 		case 0:
-			color_word = " WHITE";
-			color_letter = 'W';
-			break;
-		case 1:
 			color_word = "   RED";
 			color_letter = 'R';
 			break;
-		case 2:
+		case 1:
 			color_word = "ORANGE";
 			color_letter = 'O';
 			break;
-		case 3:
+		case 2:
 			color_word = "YELLOW";
 			color_letter = 'Y';
 			break;
-		case 4:
+		case 3:
 			color_word = " GREEN";
 			color_letter = 'G';
 			break;
-		case 5:
+		case 4:
 			color_word = "  BLUE";
 			color_letter = 'B';
 			break;
-		case 6:
+		case 5:
 			color_word = "PURPLE";
 			color_letter = 'P';
 			break;
-		case 7:
+		case 6:
 			color_word = "  NONE";
 			color_letter = 'N';
 			break;
