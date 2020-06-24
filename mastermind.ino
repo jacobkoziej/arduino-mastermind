@@ -351,4 +351,12 @@ void LCDcodeStatus(int color, int pos, int update) {
 	 *	1 - update only current color
 	 *	2 - update only position color
 	 */
+	switch (update) {
+		case 0:
+			LCD.clear();
+			LCD.print("Current:");
+			LCD.setCursor(0, 1);
+			LCD.print("==[N][N][N][N]==");
+			break;
+	}
 }
