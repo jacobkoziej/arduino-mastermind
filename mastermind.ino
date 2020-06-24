@@ -347,7 +347,7 @@ void LCDcodeStatus(int color, int pos, int update) {
 	 * color - color to show
 	 * pos - position of color
 	 * update:
-	 *	0 - full clear
+	 *	0 - prime LCD
 	 *	1 - update only current color
 	 *	2 - update only position color
 	 */
