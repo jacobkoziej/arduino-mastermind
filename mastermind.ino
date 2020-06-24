@@ -390,6 +390,25 @@ void LCDcodeStatus(int color, int pos, int update) {
 			break;
 	}
 
+	if (update == 2) {
+		int cursor_pos;
+		switch (pos) {
+			case 0:
+				cursor_pos = 3;
+				break;
+			case 1:
+				cursor_pos = 6;
+				break;
+			case 2:
+				cursor_pos = 9;
+				break;
+			case 3:
+				cursor_pos = 12;
+				break;
+		}
+		LCD.setCursor(cursor_pos, 1);
+	}
+
 	switch (update) {
 		case 0:
 			LCD.clear();
