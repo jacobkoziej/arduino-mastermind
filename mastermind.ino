@@ -421,5 +421,9 @@ void LCDcodeStatus(int color, int pos, int update) {
 			LCD.setCursor(10, 0);
 			LCD.print(color_word);
 			break;
+
+		case 2:
+			LCD.print(color_letter);
+			break;
 	}
 }
