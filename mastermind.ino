@@ -368,3 +368,6 @@ void LCDcodeStatus(int color, int pos, int update) {
 			break;
 	}
 }
+
+void playerInput() {
+}
