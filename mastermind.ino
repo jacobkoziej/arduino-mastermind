@@ -79,33 +79,7 @@ const int GAME_COLORS[][3] = {
  * input values are in the range of 0 to 7.
  */
 
-int player_input[][4] = {
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-};
-
-int key_peg_output[][4] = {
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-};
-
-int secret_code[] = {7, 7, 7, 7};
+int player_input[10][4], key_peg_output[10][4], secret_code[4];
 
 /* GLOBAL VARIABLES */
 int game_difficulty;
