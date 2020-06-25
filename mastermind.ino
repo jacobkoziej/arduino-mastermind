@@ -72,45 +72,14 @@ const int GAME_COLORS[][3] = {
 	{000, 000, 000}, // NONE
 };
 
-/* GAME STORAGE */
-
-/*
- * Each array stores the current color of each NeoPixel. Valid
- * input values are in the range of 0 to 7.
- */
-
-int player_input[][4] = {
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-};
-
-int key_peg_output[][4] = {
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-	{7, 7, 7, 7},
-};
-
-int secret_code[] = {7, 7, 7, 7};
+/* GAME COLOR STORAGE */
+int code_peg_color[10][4], key_peg_color[10][4], secret_code_color[4];
 
 /* GLOBAL VARIABLES */
-int game_difficulty;
+int current_row;
+int difficulty;
+int input[4];
 int player_count;
-int current_row = 0;
 
 void setup() {
 	STRIP.begin();
@@ -275,13 +244,18 @@ void bootstrap() {
 				push_button_state = digitalRead(PUSH_BUTTON[4]);
 			} while (push_button_state == 1);
 
-			game_difficulty = current_selection;
+			difficulty = current_selection;
 			break;
 		}
 	}
 
 	Serial.print("Game Difficulty: ");
-	Serial.println(game_difficulty);
+	Serial.println(difficulty);
+
+	current_row = 0;
+
+	Serial.print("Game Row set to: ");
+	Serial.println(current_row);
 
 	Serial.println("\n-----END BOOTSTRAP-----\n");
 }
