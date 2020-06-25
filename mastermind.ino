@@ -416,7 +416,7 @@ void LCDcodeStatus(int color, int pos, int update) {
 			LCD.clear();
 			LCD.print("Current:");
 			LCD.setCursor(0, 1);
-			LCD.print("==[N][N][N][N]==");
+			LCD.print("==[ ][ ][ ][ ]==");
 			break;
 
 		case 1:
