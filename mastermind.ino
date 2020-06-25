@@ -72,8 +72,8 @@ const int GAME_COLORS[][3] = {
 	{000, 000, 000}, // NONE
 };
 
-/* GAME STORAGE */
-int player_input[10][4], key_peg_output[10][4], secret_code[4];
+/* GAME COLOR STORAGE */
+int code_peg_color[10][4], key_peg_color[10][4], secret_code_color[4];
 
 /* GLOBAL VARIABLES */
 int game_difficulty;
