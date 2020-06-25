@@ -78,6 +78,7 @@ int code_peg_color[10][4], key_peg_color[10][4], secret_code_color[4];
 /* GLOBAL VARIABLES */
 int current_row = 0;
 int game_difficulty;
+int input[4];
 int player_count;
 
 void setup() {
