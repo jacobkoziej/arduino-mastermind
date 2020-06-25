@@ -266,6 +266,11 @@ void generateCode() {
 		switch (difficulty) {
 			// Normal - no duplicate colors
 			case 0:
+				// prime secret_code_color
+				for (int i = 0; i <= 3; i++) {
+					secret_code_color[i] = -1;
+				}
+
 				for (int a = 0; a <= 3; a++) {
 					int char_exists = 1;
 					int temp_val;
