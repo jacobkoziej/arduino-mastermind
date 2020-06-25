@@ -394,5 +394,12 @@ void playerInput() {
 			LCDcodeStatus(current, NULL, 1);
 			previous = current;
 		}
+
+		for (int i = 0; i <= 3; i++) {
+			if ((digitalRead(PUSH_BUTTON[i]) == 1) && (current != input[i])) {
+				LCDcodeStatus(current, i, 2);
+				input[i] = current;
+			}
+		}
 	}
 }
