@@ -76,7 +76,7 @@ const int GAME_COLORS[][3] = {
 int code_peg_color[10][4], key_peg_color[10][4], secret_code_color[4];
 
 /* GLOBAL VARIABLES */
-int current_row = 0;
+int current_row;
 int game_difficulty;
 int input[4];
 int player_count;
@@ -251,6 +251,11 @@ void bootstrap() {
 
 	Serial.print("Game Difficulty: ");
 	Serial.println(game_difficulty);
+
+	current_row = 0;
+
+	Serial.print("Game Row set to: ");
+	Serial.println(current_row);
 
 	Serial.println("\n-----END BOOTSTRAP-----\n");
 }
