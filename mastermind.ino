@@ -77,7 +77,7 @@ int code_peg_color[10][4], key_peg_color[10][4], secret_code_color[4];
 
 /* GLOBAL VARIABLES */
 int current_row;
-int game_difficulty;
+int difficulty;
 int input[4];
 int player_count;
 
@@ -244,13 +244,13 @@ void bootstrap() {
 				push_button_state = digitalRead(PUSH_BUTTON[4]);
 			} while (push_button_state == 1);
 
-			game_difficulty = current_selection;
+			difficulty = current_selection;
 			break;
 		}
 	}
 
 	Serial.print("Game Difficulty: ");
-	Serial.println(game_difficulty);
+	Serial.println(difficulty);
 
 	current_row = 0;
 
