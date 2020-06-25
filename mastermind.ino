@@ -337,58 +337,17 @@ void LCDcodeStatus(int color, int pos, int update) {
 	 *	2 - update only position color
 	 */
 
-	String color_word;
-	char color_letter;
-
-	switch (color) {
-		case 0:
-			color_word = "   RED";
-			color_letter = 'R';
-			break;
-		case 1:
-			color_word = "ORANGE";
-			color_letter = 'O';
-			break;
-		case 2:
-			color_word = "YELLOW";
-			color_letter = 'Y';
-			break;
-		case 3:
-			color_word = " GREEN";
-			color_letter = 'G';
-			break;
-		case 4:
-			color_word = "  BLUE";
-			color_letter = 'B';
-			break;
-		case 5:
-			color_word = "PURPLE";
-			color_letter = 'P';
-			break;
-		case 6:
-			color_word = "  NONE";
-			color_letter = 'N';
-			break;
-	}
-
-	if (update == 2) {
-		int cursor_pos;
-		switch (pos) {
-			case 0:
-				cursor_pos = 3;
-				break;
-			case 1:
-				cursor_pos = 6;
-				break;
-			case 2:
-				cursor_pos = 9;
-				break;
-			case 3:
-				cursor_pos = 12;
-				break;
-		}
-		LCD.setCursor(cursor_pos, 1);
-	}
+	String color_word[] = {
+		"   RED",
+		"ORANGE",
+		"YELLOW",
+		" GREEN",
+		"  BLUE",
+		"PURPLE",
+		"  NONE"
+	};
+	char color_letter[] = {'R', 'O', 'Y', 'G', 'B', 'P', 'N'};
+	int color_pos[] = {3, 6, 9, 12};
 
 	switch (update) {
 		case 0:
@@ -400,11 +359,12 @@ void LCDcodeStatus(int color, int pos, int update) {
 
 		case 1:
 			LCD.setCursor(10, 0);
-			LCD.print(color_word);
+			LCD.print(color_word[color]);
 			break;
 
 		case 2:
-			LCD.print(color_letter);
+			LCD.setCursor(color_pos[pos], 1);
+			LCD.print(color_letter[color]);
 			break;
 	}
 }
