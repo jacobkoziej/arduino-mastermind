@@ -73,12 +73,6 @@ const int GAME_COLORS[][3] = {
 };
 
 /* GAME STORAGE */
-
-/*
- * Each array stores the current color of each NeoPixel. Valid
- * input values are in the range of 0 to 7.
- */
-
 int player_input[10][4], key_peg_output[10][4], secret_code[4];
 
 /* GLOBAL VARIABLES */
