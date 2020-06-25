@@ -76,9 +76,9 @@ const int GAME_COLORS[][3] = {
 int code_peg_color[10][4], key_peg_color[10][4], secret_code_color[4];
 
 /* GLOBAL VARIABLES */
+int current_row = 0;
 int game_difficulty;
 int player_count;
-int current_row = 0;
 
 void setup() {
 	STRIP.begin();
