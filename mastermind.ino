@@ -263,7 +263,7 @@ void bootstrap() {
 void generateCode() {
 	if (player_count == 1) {
 		// Computer generated secret code
-		switch (game_difficulty) {
+		switch (difficulty) {
 			// Normal - no duplicate colors
 			case 0:
 				for (int a = 0; a <= 3; a++) {
@@ -274,27 +274,27 @@ void generateCode() {
 						temp_val = random(6);
 						char_exists = 0;
 						for (int b = 0; b <= 3; b++) {
-							if (temp_val == secret_code[b]) {
+							if (temp_val == secret_code_color[b]) {
 								char_exists = 1;
 								break;
 							}
 						}
 					}
-					secret_code[a] = temp_val;
+					secret_code_color[a] = temp_val;
 				}
 				break;
 
 			// Tricky - duplicate colors allowed
 			case 1:
 				for (int i = 0; i <= 3; i++) {
-					secret_code[i] = random(6);
+					secret_code_color[i] = random(6);
 				}
 				break;
 
 			// Hard - duplicate/no color allowed
 			case 2:
 				for (int i = 0; i <= 3; i++) {
-					secret_code[i] = random(7);
+					secret_code_color[i] = random(7);
 				}
 				break;
 		}
