@@ -388,5 +388,11 @@ void playerInput() {
 	int current, previous = -1;
 
 	while (complete == 0) {
+		current = potentiometerSelection(colors);
+
+		if (current != previous) {
+			LCDcodeStatus(current, NULL, 1);
+			previous = current;
+		}
 	}
 }
