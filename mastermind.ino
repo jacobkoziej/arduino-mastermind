@@ -375,4 +375,18 @@ void playerInput() {
 		input[i] = 6;
 		LCDcodeStatus(input[i], i, 2);
 	}
+
+	// Set the amount of colors
+	int colors;
+	if (difficulty != 2) {
+		colors = 6;
+	} else {
+		colors = 7;
+	}
+
+	int complete = 0;
+	int current, previous = -1;
+
+	while (complete == 0) {
+	}
 }
