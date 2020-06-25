@@ -370,4 +370,9 @@ void LCDcodeStatus(int color, int pos, int update) {
 }
 
 void playerInput() {
+	LCDcodeStatus(NULL, NULL, 0);
+	for (int i =0; i <= 3; i++) {
+		input[i] = 6;
+		LCDcodeStatus(input[i], i, 2);
+	}
 }
