@@ -98,6 +98,7 @@ void setup() {
 
 void loop() {
 	bootstrap();
+	generateCode();
 }
 
 // Returns range of 0 to (items - 1)
