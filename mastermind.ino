@@ -401,6 +401,26 @@ void playerInput() {
 				input[i] = current;
 			}
 		}
+
+		if (digitalRead(PUSH_BUTTON[4]) == 1) {
+			complete = inputCheck();
+
+			// If the check failed inform the user
+			if (complete == 0) {
+				LCD.clear();
+				LCD.print("==INVALID CODE==");
+				LCD.setCursor(0, 1);
+				LCD.print("[==============]");
+				delay(1000);
+				
+				// Restore previous output
+				LCDcodeStatus(NULL, NULL, 0);
+				LCDcodeStatus(current, NULL, 1);
+				for (int i =0; i <= 3; i++) {
+					LCDcodeStatus(input[i], i, 2);
+				}
+			}
+		}
 	}
 }
 
