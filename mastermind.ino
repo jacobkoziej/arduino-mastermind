@@ -520,4 +520,19 @@ void decodeFeedback() {
 		colors_passed += color_passed[i];
 		colors_pos_passed += color_pos_passed[i];
 	}
+
+	/* Load checks into key peg storage */
+
+	// Preload with color NONE
+	for (int i = 0; i <= 3; i++) {
+		key_peg_color[current_row][i] = 6;
+	}
+	// Load correct color and position with RED
+	for (int i = 0; i < colors_pos_passed; i++) {
+		key_peg_color[current_row][i] = 0;
+	}
+	// Load correct colors and wrong position with WHITE
+	for (int i = colors_pos_passed; i < (colors_pos_passed + colors_passed); i++) {
+		key_peg_color[current_row][i] = 7;
+	}
 }
