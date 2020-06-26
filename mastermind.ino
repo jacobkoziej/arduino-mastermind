@@ -324,6 +324,11 @@ void generateCode() {
 		LCD.setCursor(3, 1);
 		LCD.print("By Code Maker");
 		delay(3000);
+
+		playerInput();
+		for (int i = 0; i <= 3; i++) {
+			secret_code_color[i] = input[i];
+		}
 	}
 }
 
