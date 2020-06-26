@@ -492,12 +492,25 @@ int inputCheck() {
 }
 
 void decodeFeedback() {
+	int color_passed[] = {0, 0, 0, 0};
 	int color_pos_passed[] = {0, 0, 0, 0};
 
 	// Check if color and position are both correct
 	for (int i = 0; i <= 3; i++) {
 		if (input[i] == secret_code_color[i]) {
 			color_pos_passed[i] = 1;
+		}
+	}
+
+	// Check for correct color in incorrect positions
+	for (int a = 0; a <= 3; a++) {
+		for (int b = 0; b <= 3; b++) {
+			if (input[a] == secret_code_color[b]) {
+				if ((color_pos_passed[b] == 0) && (color_passed[b] == 0)) {
+					color_passed[b] = 1;
+					break;
+				}
+			}
 		}
 	}
 }
