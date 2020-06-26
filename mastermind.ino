@@ -261,7 +261,11 @@ void bootstrap() {
 }
 
 void generateCode() {
+	Serial.println("-----BEGIN CODE GENERATION-----");
+	Serial.print("\nEvent: ");
+
 	if (player_count == 1) {
+		Serial.println("computer generating code");
 		// Computer generated secret code
 		switch (difficulty) {
 			// Normal - no duplicate colors
@@ -319,6 +323,8 @@ void generateCode() {
 		}
 		delay(1500);
 	} else {
+		Serial.println("player generating code");
+
 		LCD.clear();
 		LCD.print("Code Generation:");
 		LCD.setCursor(3, 1);
@@ -336,6 +342,13 @@ void generateCode() {
 	LCD.setCursor(0, 1);
 	LCD.print("    COMPLETE    ");
 	delay(3000);
+
+	Serial.print("Secret Code: ");
+	for (int i = 0; i <= 3; i++) {
+		Serial.print(secret_code_color[i]);
+	}
+
+	Serial.println("\n\n-----END CODE GENERATION-----\n");
 }
 
 void LCDcodeStatus(int color, int pos, int update) {
