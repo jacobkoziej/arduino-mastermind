@@ -490,3 +490,6 @@ int inputCheck() {
 
 	return return_val;
 }
+
+void decodeFeedback() {
+}
