@@ -329,7 +329,13 @@ void generateCode() {
 		for (int i = 0; i <= 3; i++) {
 			secret_code_color[i] = input[i];
 		}
+		LCD.clear();
+		LCD.print("Code Generation:");
 	}
+
+	LCD.setCursor(0, 1);
+	LCD.print("    COMPLETE    ");
+	delay(3000);
 }
 
 void LCDcodeStatus(int color, int pos, int update) {
