@@ -490,3 +490,61 @@ int inputCheck() {
 
 	return return_val;
 }
+
+void decodeFeedback() {
+	Serial.println("-----BEGIN DECODE FEEDBACK-----");
+	int color_passed[] = {0, 0, 0, 0};
+	int color_pos_passed[] = {0, 0, 0, 0};
+
+	// Check if color and position are both correct
+	for (int i = 0; i <= 3; i++) {
+		if (input[i] == secret_code_color[i]) {
+			color_pos_passed[i] = 1;
+		}
+	}
+
+	// Check for correct color in incorrect positions
+	for (int a = 0; a <= 3; a++) {
+		for (int b = 0; b <= 3; b++) {
+			if (input[a] == secret_code_color[b]) {
+				if ((color_pos_passed[b] == 0) && (color_passed[b] == 0)) {
+					color_passed[b] = 1;
+					break;
+				}
+			}
+		}
+	}
+
+	// Get count for each check passed
+	int colors_passed = 0, colors_pos_passed = 0;
+	for (int i = 0; i <= 3; i++) {
+		colors_passed += color_passed[i];
+		colors_pos_passed += color_pos_passed[i];
+	}
+
+	Serial.print("\nColors in correct position: ");
+	Serial.println(colors_pos_passed);
+	Serial.print("Colors in incorrect position: ");
+	Serial.println(colors_passed);
+
+	/* Load checks into key peg storage */
+
+	// Preload with color NONE
+	for (int i = 0; i <= 3; i++) {
+		key_peg_color[current_row][i] = 6;
+	}
+	// Load correct color and position with RED
+	for (int i = 0; i < colors_pos_passed; i++) {
+		key_peg_color[current_row][i] = 0;
+	}
+	// Load correct colors and wrong position with WHITE
+	for (int i = colors_pos_passed; i < (colors_pos_passed + colors_passed); i++) {
+		key_peg_color[current_row][i] = 7;
+	}
+
+	Serial.print("Key Peg Feedback: ");
+	for (int i = 0; i <= 3; i++) {
+		Serial.print(key_peg_color[0][i]);
+	}
+	Serial.println("\n\n-----END DECODE FEEDBACK-----\n");
+}
