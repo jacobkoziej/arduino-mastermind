@@ -414,6 +414,12 @@ void playerInput() {
 		}
 
 		if (digitalRead(PUSH_BUTTON[4]) == 1) {
+			// Don't continue until button is released
+			int button_pressed = 1;
+			while (button_pressed == 1) {
+				button_pressed = digitalRead(PUSH_BUTTON[4]);
+			}
+
 			complete = inputCheck();
 
 			// If the check failed inform the user
