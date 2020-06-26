@@ -544,7 +544,7 @@ void decodeFeedback() {
 
 	Serial.print("Key Peg Feedback: ");
 	for (int i = 0; i <= 3; i++) {
-		Serial.print(key_peg_color[0][i]);
+		Serial.print(key_peg_color[current_row][i]);
 	}
 	Serial.println("\n\n-----END DECODE FEEDBACK-----\n");
 }
