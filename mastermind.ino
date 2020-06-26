@@ -403,3 +403,39 @@ void playerInput() {
 		}
 	}
 }
+
+// Return if the code input is valid for difficulty
+int inputCheck() {
+	int return_val = 1;
+
+	switch (difficulty) {
+		case 0:
+			for (int a = 0; a <= 3; a++) {
+				// Ignore running if check has already failed
+				if (return_val == 1) {
+					for (int b = 0; b <= 3; b++) {
+						// No duplicates or color NONE
+						if (((input[a] == input[b]) && (a != b)) || (input[b] == 6)) {
+							return_val = 0;
+							break;
+						}
+					}
+				} else {
+					break;
+				}
+			}
+			break;
+
+		case 1:
+			for (int i = 0; i <= 3; i++) {
+				// No color NONE
+				if (input[i] == 6) {
+					return_val = 0;
+					break;
+				}
+			}
+			break;
+	}
+
+	return return_val;
+}
