@@ -1,5 +1,5 @@
 /*
- * An Arduino clone of the board game Mastermind
+ * An Arduino implementation of the classic board game.
  * Copyright (C) 2020  Jacob Koziej
  *
  * This program is free software: you can redistribute it and/or modify
