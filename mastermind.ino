@@ -513,4 +513,11 @@ void decodeFeedback() {
 			}
 		}
 	}
+
+	// Get count for each check passed
+	int colors_passed = 0, colors_pos_passed = 0;
+	for (int i = 0; i <= 3; i++) {
+		colors_passed += color_passed[i];
+		colors_pos_passed += color_pos_passed[i];
+	}
 }
