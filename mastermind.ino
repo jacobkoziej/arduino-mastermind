@@ -492,6 +492,7 @@ int inputCheck() {
 }
 
 void decodeFeedback() {
+	Serial.println("-----BEGIN DECODE FEEDBACK-----");
 	int color_passed[] = {0, 0, 0, 0};
 	int color_pos_passed[] = {0, 0, 0, 0};
 
@@ -521,6 +522,11 @@ void decodeFeedback() {
 		colors_pos_passed += color_pos_passed[i];
 	}
 
+	Serial.print("\nColors in correct position: ");
+	Serial.println(colors_pos_passed);
+	Serial.print("Colors in incorrect position: ");
+	Serial.println(colors_passed);
+
 	/* Load checks into key peg storage */
 
 	// Preload with color NONE
@@ -535,4 +541,10 @@ void decodeFeedback() {
 	for (int i = colors_pos_passed; i < (colors_pos_passed + colors_passed); i++) {
 		key_peg_color[current_row][i] = 7;
 	}
+
+	Serial.print("Key Peg Feedback: ");
+	for (int i = 0; i <= 3; i++) {
+		Serial.print(key_peg_color[0][i]);
+	}
+	Serial.println("\n\n-----END DECODE FEEDBACK-----\n");
 }
