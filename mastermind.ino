@@ -62,7 +62,6 @@ LiquidCrystal LCD(13, 12, 8, 7, 4, 2);
 
 /* GAME COLORS */
 const int GAME_COLORS[][3] = {
-	{255, 255, 255}, // WHITE
 	{255, 000, 000}, // RED
 	{255, 165, 000}, // ORANGE
 	{255, 255, 000}, // YELLOW
@@ -70,6 +69,7 @@ const int GAME_COLORS[][3] = {
 	{000, 000, 255}, // BLUE
 	{128, 000, 128}, // PURPLE
 	{000, 000, 000}, // NONE
+	{255, 255, 255}, // WHITE
 };
 
 /* GAME COLOR STORAGE */
@@ -98,6 +98,7 @@ void setup() {
 
 void loop() {
 	bootstrap();
+	generateCode();
 }
 
 // Returns range of 0 to (items - 1)
@@ -258,4 +259,234 @@ void bootstrap() {
 	Serial.println(current_row);
 
 	Serial.println("\n-----END BOOTSTRAP-----\n");
+}
+
+void generateCode() {
+	Serial.println("-----BEGIN CODE GENERATION-----");
+	Serial.print("\nEvent: ");
+
+	if (player_count == 1) {
+		Serial.println("computer generating code");
+		// Computer generated secret code
+		switch (difficulty) {
+			// Normal - no duplicate colors
+			case 0:
+				// prime secret_code_color
+				for (int i = 0; i <= 3; i++) {
+					secret_code_color[i] = -1;
+				}
+
+				for (int a = 0; a <= 3; a++) {
+					int char_exists = 1;
+					int temp_val;
+					// Generate random colors until it is not duplicate
+					while (char_exists == 1) {
+						temp_val = random(6);
+						char_exists = 0;
+						for (int b = 0; b <= 3; b++) {
+							if (temp_val == secret_code_color[b]) {
+								char_exists = 1;
+								break;
+							}
+						}
+					}
+					secret_code_color[a] = temp_val;
+				}
+				break;
+
+			// Tricky - duplicate colors allowed
+			case 1:
+				for (int i = 0; i <= 3; i++) {
+					secret_code_color[i] = random(6);
+				}
+				break;
+
+			// Hard - duplicate/no color allowed
+			case 2:
+				for (int i = 0; i <= 3; i++) {
+					secret_code_color[i] = random(7);
+				}
+				break;
+		}
+		// Placebo progress bar
+		LCD.clear();
+		LCD.print("Code Generation:");
+		LCD.setCursor(0, 1);
+		LCD.print("[");
+		LCD.setCursor(15, 1);
+		LCD.print("]");
+		LCD.setCursor(1, 1);
+		int placebo_delay = 220;
+		for (int i = 1; i <= 14; i++) {
+			delay(placebo_delay);
+			LCD.print("=");
+			placebo_delay += 20;
+		}
+		delay(1500);
+	} else {
+		Serial.println("player generating code");
+
+		LCD.clear();
+		LCD.print("Code Generation:");
+		LCD.setCursor(3, 1);
+		LCD.print("By Code Maker");
+		delay(3000);
+
+		playerInput();
+		for (int i = 0; i <= 3; i++) {
+			secret_code_color[i] = input[i];
+		}
+		LCD.clear();
+		LCD.print("Code Generation:");
+	}
+
+	LCD.setCursor(0, 1);
+	LCD.print("    COMPLETE    ");
+	delay(3000);
+
+	Serial.print("Secret Code: ");
+	for (int i = 0; i <= 3; i++) {
+		Serial.print(secret_code_color[i]);
+	}
+
+	Serial.println("\n\n-----END CODE GENERATION-----\n");
+}
+
+void LCDcodeStatus(int color, int pos, int update) {
+	/*
+	 * color - color to show
+	 * pos - position of color
+	 * update:
+	 *	0 - prime LCD
+	 *	1 - update only current color
+	 *	2 - update only position color
+	 */
+
+	String color_word[] = {
+		"   RED",
+		"ORANGE",
+		"YELLOW",
+		" GREEN",
+		"  BLUE",
+		"PURPLE",
+		"  NONE"
+	};
+	char color_letter[] = {'R', 'O', 'Y', 'G', 'B', 'P', 'N'};
+	int color_pos[] = {3, 6, 9, 12};
+
+	switch (update) {
+		case 0:
+			LCD.clear();
+			LCD.print("Current:");
+			LCD.setCursor(0, 1);
+			LCD.print("==[ ][ ][ ][ ]==");
+			break;
+
+		case 1:
+			LCD.setCursor(10, 0);
+			LCD.print(color_word[color]);
+			break;
+
+		case 2:
+			LCD.setCursor(color_pos[pos], 1);
+			LCD.print(color_letter[color]);
+			break;
+	}
+}
+
+void playerInput() {
+	LCDcodeStatus(NULL, NULL, 0);
+	for (int i =0; i <= 3; i++) {
+		input[i] = 6;
+		LCDcodeStatus(input[i], i, 2);
+	}
+
+	// Set the amount of colors
+	int colors;
+	if (difficulty != 2) {
+		colors = 6;
+	} else {
+		colors = 7;
+	}
+
+	int complete = 0;
+	int current, previous = -1;
+
+	while (complete == 0) {
+		current = potentiometerSelection(colors);
+
+		if (current != previous) {
+			LCDcodeStatus(current, NULL, 1);
+			previous = current;
+		}
+
+		for (int i = 0; i <= 3; i++) {
+			if ((digitalRead(PUSH_BUTTON[i]) == 1) && (current != input[i])) {
+				LCDcodeStatus(current, i, 2);
+				input[i] = current;
+			}
+		}
+
+		if (digitalRead(PUSH_BUTTON[4]) == 1) {
+			// Don't continue until button is released
+			int button_pressed = 1;
+			while (button_pressed == 1) {
+				button_pressed = digitalRead(PUSH_BUTTON[4]);
+			}
+
+			complete = inputCheck();
+
+			// If the check failed inform the user
+			if (complete == 0) {
+				LCD.clear();
+				LCD.print("==INVALID CODE==");
+				LCD.setCursor(0, 1);
+				LCD.print("[==============]");
+				delay(1000);
+				
+				// Restore previous output
+				LCDcodeStatus(NULL, NULL, 0);
+				LCDcodeStatus(current, NULL, 1);
+				for (int i =0; i <= 3; i++) {
+					LCDcodeStatus(input[i], i, 2);
+				}
+			}
+		}
+	}
+}
+
+// Return if the code input is valid for difficulty
+int inputCheck() {
+	int return_val = 1;
+
+	switch (difficulty) {
+		case 0:
+			for (int a = 0; a <= 3; a++) {
+				// Ignore running if check has already failed
+				if (return_val == 1) {
+					for (int b = 0; b <= 3; b++) {
+						// No duplicates or color NONE
+						if (((input[a] == input[b]) && (a != b)) || (input[b] == 6)) {
+							return_val = 0;
+							break;
+						}
+					}
+				} else {
+					break;
+				}
+			}
+			break;
+
+		case 1:
+			for (int i = 0; i <= 3; i++) {
+				// No color NONE
+				if (input[i] == 6) {
+					return_val = 0;
+					break;
+				}
+			}
+			break;
+	}
+
+	return return_val;
 }
