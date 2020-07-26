@@ -106,7 +106,7 @@ int potentiometerSelection(int items) {
 	int output = map(analogRead(POTENTIOMETER), 0, 1023, 0, items);
 
 	/*
-	 * For some reason the map function has a quirk where the maximum 
+	 * For some reason the map function has a quirk where the maximum
 	 * value is only mapped at the upper bound of the input (1023).
 	 * This is the work-around for this quirk.
 	 */
@@ -443,7 +443,7 @@ void playerInput() {
 				LCD.setCursor(0, 1);
 				LCD.print("[==============]");
 				delay(1000);
-				
+
 				// Restore previous output
 				LCDcodeStatus(NULL, NULL, 0);
 				LCDcodeStatus(current, NULL, 1);
